@@ -1,12 +1,18 @@
-// src/App.tsx
 import React from 'react';
-import LoginAndRegisterPage from './components/loginPage';
-const App: React.FC = () => {
-  return (
-    <div>
-      <LoginAndRegisterPage/>
-    </div>
-  )
+import Header from './components/header';
+import SearchBar from './components/searchBar';
+import LoginAndRegisterPage from './components/loginSignupPage';
+//import LoginAndRegisterPage from './components/loginSignupPage';
+
+const App = () => {
+    return (
+        <div className="font-sans">
+            <Header />
+            
+            <SearchBar />
+            {/* <LoginAndRegisterPage/> */}
+        </div>
+    );
 };
 
 export default App;
