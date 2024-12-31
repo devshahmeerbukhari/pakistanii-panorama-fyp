@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LoginAndRegisterPage from "../loginSignupPage"; // Import the login/register component
+import path from "path";
 
-const Header = () => {
+const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null); // State for tracking selected item
+
+  const navigationMenueItems = [
+    { menue: "Lahore", path: "#" },
+    { menue: "Hotels", path: "#" },
+    { menue: "Things to Do", path: "#" },
+    { menue: "Restaurants", path: "#" },
+    { menue: "Flights", path: "#" },
+  ];
 
   const handleSignInClick = () => {
     setIsModalOpen(true);
@@ -30,21 +39,14 @@ const Header = () => {
         {/* Desktop Links */}
         <nav className="hidden md:hidden lg:flex flex-1 justify-center">
           <ul className="flex space-x-8 text-gray-600">
-            <li className="hover:text-green-600 transition duration-300 cursor-pointer">
-              Lahore
-            </li>
-            <li className="hover:text-green-600 transition duration-300 cursor-pointer">
-              Hotels
-            </li>
-            <li className="hover:text-green-600 transition duration-300 cursor-pointer">
-              Things to Do
-            </li>
-            <li className="hover:text-green-600 transition duration-300 cursor-pointer">
-              Restaurants
-            </li>
-            <li className="hover:text-green-600 transition duration-300 cursor-pointer">
-              Flights
-            </li>
+            {navigationMenueItems.map((menuItem, index) => (
+              <li
+                key={index}
+                className="hover:text-green-600 transition duration-300 cursor-pointer"
+              >
+                {menuItem.menue}
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -73,21 +75,15 @@ const Header = () => {
       >
         <div className="bg-slate-200 flex flex-col items-center">
           <ul className="flex flex-col items-center space-y-4 pb-4 pt-2 w-full text-center">
-            {["Lahore", "Hotels", "Things to Do", "Restaurants", "Flights"].map(
-              (menuItem, index) => (
-                <li
-                  key={index}
-                  className={`cursor-pointer py-2 px-4 rounded-md transition-all duration-300 transform ${
-                    selectedMenuItem === menuItem
-                      ? "bg-green-600 text-white scale-105"
-                      : "hover:text-green-600 hover:scale-105"
-                  }`}
-                  onClick={() => handleMenuItemClick(menuItem)}
-                >
-                  {menuItem}
-                </li>
-              )
-            )}
+            {navigationMenueItems.map((menuItem, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer py-2 px-4 rounded-md transition-all duration-300 transform "hover:text-green-600 hover:scale-105"`}
+                onClick={() => handleMenuItemClick(menuItem)}
+              >
+                {menuItem.menue}
+              </li>
+            ))}
           </ul>
 
           {/* Sign In Button for Mobile */}
@@ -121,4 +117,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
