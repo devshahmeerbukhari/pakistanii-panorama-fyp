@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoginAndRegisterPage from "../loginSignupPage"; // Import the login/register component
 import path from "path";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,8 +9,8 @@ const Navbar = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(null); // State for tracking selected item
 
   const navigationMenueItems = [
-    { menue: "Lahore", path: "#" },
-    { menue: "Hotels", path: "#" },
+    { menue: "Lahore", path: "" },
+    { menue: "Hotels", path: "/components/hotels" },
     { menue: "Things to Do", path: "#" },
     { menue: "Restaurants", path: "#" },
     { menue: "Flights", path: "#" },
@@ -40,11 +41,13 @@ const Navbar = () => {
         <nav className="hidden md:hidden lg:flex flex-1 justify-center">
           <ul className="flex space-x-8 text-gray-600">
             {navigationMenueItems.map((menuItem, index) => (
-              <li
-                key={index}
-                className="hover:text-green-600 transition duration-300 cursor-pointer"
-              >
-                {menuItem.menue}
+              <li key={index}>
+                <Link
+                  to={menuItem.path}
+                  className="hover:text-green-600 transition duration-300 cursor-pointer"
+                >
+                  {menuItem.menue}
+                </Link>
               </li>
             ))}
           </ul>
